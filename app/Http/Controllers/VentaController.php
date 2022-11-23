@@ -17,17 +17,23 @@ class VentaController extends Controller
     public function index()
     {
         $venta = Venta::join('usuario', 'usuario.u_clave', '=', 'venta.u_clave')
-                 ->get(['v_clave', 'u_alias', 'v_fecha', 'v_estado']);
+            ->get(['v_clave', 'u_alias', 'v_fecha', 'v_estado']);
 
-        return response()->json([$venta]);
+        return response()->json([
+            "success" => true,
+            "data" => $venta
+        ]);
     }
 
     public function obtenerByID($id)
     {
         $venta = Venta::join('usuario', 'usuario.u_clave', '=', 'venta.u_clave')
-                 ->where('v_clave', '=', $id)
-                 ->get(['v_clave', 'u_alias', 'v_fecha', 'v_estado']);
-        return response()->json([$venta]);
+            ->where('v_clave', '=', $id)
+            ->get(['v_clave', 'u_alias', 'v_fecha', 'v_estado']);
+        return response()->json([
+            "success" => true,
+            "data" => $venta
+        ]);
     }
 
     /**
@@ -56,7 +62,11 @@ class VentaController extends Controller
 
         $venta->save();
 
-        return response()->json(['message' => 'Venta guardada correctamente']);
+        return response()->json([
+            "success" => true,
+            "message" => "La venta se ha insertado exitosamente",
+            "data" => $venta->id
+        ]);
     }
 
     /**
@@ -92,7 +102,11 @@ class VentaController extends Controller
     {
         $venta = Venta::where('v_clave', '=', $id)->update($request->all());
 
-        return response()->json(['message' => 'El estado de la venta se ha actualizado']);
+        return response()->json([
+            "success" => true,
+            "message" => "La venta se ha actualizado exitosamente",
+            "data" => $id
+        ]);
     }
 
     /**

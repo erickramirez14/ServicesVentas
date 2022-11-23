@@ -24,7 +24,10 @@ class VentaDetalleController extends Controller
             ->join('venta', 'detalle_venta.v_clave', '=', 'venta.v_clave')
             ->where('detalle_venta.v_clave', '=', $id)
             ->get(['detalle_venta.v_clave', 'p_nombre', 'detalle_venta.p_cantidad', 'detalle_venta.p_costo']);
-        return response()->json([$detalle]);
+        return response()->json([
+            "success" => true,
+            "data" => $detalle
+        ]);
     }
 
     /**
@@ -53,7 +56,10 @@ class VentaDetalleController extends Controller
 
         $detalle->save();
 
-        return response()->json(['message' => 'Detalle de Venta guardada correctamente']);
+        return response()->json([
+            "success" => true,
+            "message" => "El detalle se ha insertado exitosamente"
+        ]);
     }
 
     /**
@@ -96,7 +102,10 @@ class VentaDetalleController extends Controller
                 ])
                 ->update($request->all());
         
-        return response()->json(['message' => 'Detalle de Venta actualizada correctamente']);
+        return response()->json([
+            "success" => true,
+            "message" => "El detalle se ha actualizado exitosamente"
+        ]);
     }
 
     /**
@@ -115,6 +124,9 @@ class VentaDetalleController extends Controller
             ])
             ->delete();
 
-            return response()->json(['message' => 'Detalle de Venta eliminado correctamente']);
+            return response()->json([
+                "success" => true,
+                "message" => "El detalle se ha eliminado exitosamente"
+            ]);
     }
 }
