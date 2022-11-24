@@ -56,10 +56,13 @@ class VentaDetalleController extends Controller
 
         $detalle->save();
 
+        $ids = ['ID_1' => $detalle->v_clave,
+                'ID_2' => $detalle->p_clave];
+
         return response()->json([
             "success" => true,
             "message" => "El detalle se ha insertado exitosamente",
-            "data" => $v_clave . "," . $p_clave
+            "data" => $ids
         ]);
     }
 
@@ -103,10 +106,13 @@ class VentaDetalleController extends Controller
                 ])
                 ->update($request->all());
         
+        $ids = ['ID_1' => $detalle->v_clave,
+                'ID_2' => $detalle->p_clave];
+        
         return response()->json([
             "success" => true,
             "message" => "El detalle se ha actualizado exitosamente",
-            "data" => $v_clave . "," . $p_clave
+            "data" => $ids
         ]);
     }
 
@@ -128,8 +134,7 @@ class VentaDetalleController extends Controller
 
             return response()->json([
                 "success" => true,
-                "message" => "El detalle se ha eliminado exitosamente",
-                "data" => $v_clave . "," . $p_clave
+                "message" => "El detalle se ha eliminado exitosamente"
             ]);
     }
 }
