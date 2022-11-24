@@ -58,7 +58,8 @@ class VentaDetalleController extends Controller
 
         return response()->json([
             "success" => true,
-            "message" => "El detalle se ha insertado exitosamente"
+            "message" => "El detalle se ha insertado exitosamente",
+            "data" => $v_clave . "," . $p_clave
         ]);
     }
 
@@ -104,7 +105,8 @@ class VentaDetalleController extends Controller
         
         return response()->json([
             "success" => true,
-            "message" => "El detalle se ha actualizado exitosamente"
+            "message" => "El detalle se ha actualizado exitosamente",
+            "data" => $v_clave . "," . $p_clave
         ]);
     }
 
@@ -126,7 +128,8 @@ class VentaDetalleController extends Controller
 
             return response()->json([
                 "success" => true,
-                "message" => "El detalle se ha eliminado exitosamente"
+                "message" => "El detalle se ha eliminado exitosamente",
+                "data" => $v_clave . "," . $p_clave
             ]);
     }
 }
